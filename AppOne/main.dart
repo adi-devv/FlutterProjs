@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,29 +10,47 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  List<int> nombres = [1, 2, 3];
-  Set<int> aa = {1, 5, 6, 1, 1}; /*doesnt repeat*/
-  Map user = {
-    'name': "Heyo",
-    'age': 20,
-    'height': 180,
-  };
+  List names = ['a','b','c','d'];
+  /*scrollDirection: Axis.horizontal,
+            children: [
+              Container(
+                height: 400,
+                width: 500,
+                color: Colors.lightGreen[400],
+                child: Text('hahaha'),
+              ),
 
-  greet(String name) {
-    for (int i = 0; i < nombres.length; i++) {
-      print(name + nombres[i].toString());
-    }
-    print(aa);
-    return "Successful";
-  }
-
+            Container(
+                height: 400,
+                width: 500,
+                color: Colors.lightGreen[300]),
+            Container(
+                height: 400,
+                width: 500,
+                color: Colors.lightGreen[200]),
+            ],*/
   @override
   Widget build(BuildContext context) {
-    String a = greet("OYEHOYE2");
-    print(a);
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(),
+      home: Scaffold(
+          backgroundColor: Colors.blueGrey[600],
+          appBar: AppBar(
+            title: Text("Android"),
+            backgroundColor: Colors.lightGreen[300],
+            elevation: 0,
+            // same z index
+            leading: Icon(Icons.menu),
+            actions: [IconButton(onPressed: () {}, icon: Icon(Icons.adb))],
+            centerTitle: true,
+          ),
+          body: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) => ListTile(
+              title: Text(names[index%4]+index.toString()),
+            ),
+          ),
+      ),
     );
   }
 }
