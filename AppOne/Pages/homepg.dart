@@ -7,13 +7,8 @@ class HomePg extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[600],
-      appBar: AppBar(
-        title: Text("Home"),
-        backgroundColor: Colors.lightGreen[300],
-        elevation: 0,
-        // same z index a
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.adb))],
-        centerTitle: true,
+      body: Center(
+        child: Text("Home"),
       ),
     );
   }
