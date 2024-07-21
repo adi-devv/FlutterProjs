@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,26 @@ class First extends StatelessWidget {
         child: Column(
           children: [
             DrawerHeader(
-              child: Icon(Icons.adb, size: 100,),
+              child: Icon(
+                Icons.adb,
+                size: 100,
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Home"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/homepage');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("Settings"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/settingspage');
+              },
             ),
           ],
         ),
