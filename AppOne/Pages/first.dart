@@ -13,14 +13,15 @@ class First extends StatefulWidget {
 }
 
 class _FirstState extends State<First> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
-  void _navigateBottomBar(int index){
+  void _navigateBottomBar(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
-  final List _pages = [First(), ProfilePg(), SettingsPg()];
+
+  final List _pages = [HomePg(), ProfilePg(), SettingsPg()];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class _FirstState extends State<First> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'ToDo',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
