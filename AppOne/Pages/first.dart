@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:appone/Pages/homepg.dart';
-import 'package:appone/Pages/profilepg.dart';
+import 'package:appone/Pages/todopg.dart';
 import 'package:appone/Pages/settingspg.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +20,7 @@ class _FirstState extends State<First> {
       _selectedIndex = index;
     });
   }
-
-  final List _pages = [HomePg(), ProfilePg(), SettingsPg()];
+  final List _pages = [HomePg(), SettingsPg(), TodoPg()];
 
   @override
   Widget build(BuildContext context) {
