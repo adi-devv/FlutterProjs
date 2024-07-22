@@ -27,15 +27,20 @@ class _HomePgState extends State<HomePg> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Tapped",
-              style: TextStyle(fontSize: 30),
+              "Tapped Count:",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.orange,
+              ),
             ),
             Text(
               _counter.toString(),
               style: TextStyle(
                 fontSize: 30,
+                color: Colors.orange,
               ),
             ),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: _incrementCounter,
               style: TextButton.styleFrom(
