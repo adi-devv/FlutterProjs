@@ -1,8 +1,9 @@
 import 'dart:ffi';
 
-import 'package:appone/Pages/first.dart';
-import 'package:appone/Pages/homepg.dart';
-import 'package:appone/Pages/reminderspg.dart';
+import 'package:appone/pages/first.dart';
+import 'package:appone/pages/homepg.dart';
+import 'package:appone/pages/remspg.dart';
+import 'package:appone/pages/todopg.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,10 +18,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: First(),
+      theme: ThemeData(
+        primaryColor: Colors.lightGreen[300],
+      ),
       routes: {
         '/firstp': (context) => First(),
         '/homepage': (context) => HomePg(),
-        '/settingspage': (context) => RemindersPg(),
+        '/todopage': (context) => TodoPg(),
+        '/remspage': (context) => RemsPg(),
       },
     );
   }
