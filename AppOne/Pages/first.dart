@@ -2,7 +2,7 @@
 
 import 'package:appone/Pages/homepg.dart';
 import 'package:appone/Pages/todopg.dart';
-import 'package:appone/Pages/settingspg.dart';
+import 'package:appone/Pages/reminderspg.dart';
 import 'package:flutter/material.dart';
 
 class First extends StatefulWidget {
@@ -20,7 +20,8 @@ class _FirstState extends State<First> {
       _selectedIndex = index;
     });
   }
-  final List _pages = [HomePg(), SettingsPg(), TodoPg()];
+
+  final List _pages = [HomePg(), TodoPg(), RemindersPg()];
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +50,8 @@ class _FirstState extends State<First> {
             label: 'ToDo',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.access_time_filled),
+            label: 'Reminders',
           ),
         ],
       ),
@@ -73,7 +74,7 @@ class _FirstState extends State<First> {
             ),
             ListTile(
               leading: Icon(Icons.settings),
-              title: Text("Settings"),
+              title: Text("Reminders"),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/settingspage');

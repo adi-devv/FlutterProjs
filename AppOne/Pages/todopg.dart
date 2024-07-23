@@ -12,8 +12,13 @@ class TodoPg extends StatefulWidget {
 class _TodoPgState extends State<TodoPg> {
   TextEditingController myController = TextEditingController();
 
+  String greetMsg = "";
+
   void greet() {
-    print(myController.text);
+    String userName = myController.text.trim();
+    setState(() {
+      greetMsg = "Hey, $userName!!";
+    });
   }
 
   @override
@@ -26,12 +31,13 @@ class _TodoPgState extends State<TodoPg> {
           children: [
             Container(
               alignment: Alignment.center,
-              width: 300, // Adjust the width as needed
+              width: 250, // Adjust the width as needed
               child: TextField(
                 controller: myController,
                 textAlign: TextAlign.center,
                 cursorColor: Colors.white,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                    color: Colors.white60, fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -39,6 +45,8 @@ class _TodoPgState extends State<TodoPg> {
                       color: Colors.lightGreen,
                     ),
                   ),
+                  hintText: "Your Name",
+                  hintStyle: TextStyle(color: Colors.white60),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(
@@ -64,6 +72,11 @@ class _TodoPgState extends State<TodoPg> {
                 "Tap",
                 style: TextStyle(color: Colors.black),
               ),
+            ),
+            SizedBox(height: 60),
+            Text(
+              greetMsg,
+              style: TextStyle(color: Colors.lightGreen, fontSize: 24),
             ),
           ],
         ),
