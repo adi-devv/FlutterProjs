@@ -13,7 +13,7 @@ class RemsPg extends StatefulWidget {
 
 class _RemsPgState extends State<RemsPg> {
   final _controller = TextEditingController();
-  List remTasks = [
+  List remList = [
     ["Make App", false],
     ["Read Book ", false],
     ["Wake Up Early", true]
@@ -21,13 +21,13 @@ class _RemsPgState extends State<RemsPg> {
 
   void toggleCheck(bool? value, int index) {
     setState(() {
-      remTasks[index][1] = !remTasks[index][1];
+      remList[index][1] = !remList[index][1];
     });
   }
 
-  void addRem(){
+  void addRem() {
     setState(() {
-      remTasks.add([_controller.text, false]);
+      remList.add([_controller.text, false]);
     });
     Navigator.of(context).pop();
   }
@@ -46,6 +46,11 @@ class _RemsPgState extends State<RemsPg> {
     );
   }
 
+  void deleteRem(int index){
+    setState(() {
+      remList.removeAt(index);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,12 +63,13 @@ class _RemsPgState extends State<RemsPg> {
       body: Padding(
           padding: const EdgeInsets.all(10),
           child: ListView.builder(
-            itemCount: remTasks.length,
+            itemCount: remList.length,
             itemBuilder: (context, index) {
               return remTile(
-                taskName: remTasks[index][0],
-                taskCompleted: remTasks[index][1],
+                taskName: remList[index][0],
+                taskCompleted: remList[index][1],
                 onChanged: (value) => toggleCheck(value, index),
+                delFunc: (context) => deleteRem(index),
               );
             },
           )),
