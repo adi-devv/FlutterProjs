@@ -12,6 +12,7 @@ class RemsPg extends StatefulWidget {
 }
 
 class _RemsPgState extends State<RemsPg> {
+  final _controller = TextEditingController();
   List remTasks = [
     ["Make App", false],
     ["Read Book ", false],
@@ -24,11 +25,23 @@ class _RemsPgState extends State<RemsPg> {
     });
   }
 
+  void addRem(){
+    setState(() {
+      remTasks.add([_controller.text, false]);
+    });
+    Navigator.of(context).pop();
+  }
+
   void createRem() {
+    _controller.text = "";
     showDialog(
       context: context,
       builder: (context) {
-        return remBox();
+        return remBox(
+          controller: _controller,
+          onSave: addRem,
+          onCancel: () => Navigator.of(context).pop(),
+        );
       },
     );
   }

@@ -2,7 +2,16 @@ import 'package:appone/util/button_template.dart';
 import 'package:flutter/material.dart';
 
 class remBox extends StatelessWidget {
-  const remBox({super.key});
+  final TextEditingController controller;
+  VoidCallback onSave;
+  VoidCallback onCancel;
+
+  remBox({
+    super.key,
+    required this.controller,
+    required this.onSave,
+    required this.onCancel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +24,11 @@ class remBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextField(
+              controller: controller,
               decoration: InputDecoration(
                 border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+
                 hintText: "Add Reminder",
                 hintStyle: TextStyle(color: Colors.white70),
               ),
@@ -29,11 +40,11 @@ class remBox extends StatelessWidget {
               children: [
                 MyButton(
                   txt: "Cancel",
-                  onPressed: () {},
+                  onPressed: onCancel,
                 ),
                 MyButton(
                   txt: "Save",
-                  onPressed: () {},
+                  onPressed: onSave,
                 ),
               ],
             ),
