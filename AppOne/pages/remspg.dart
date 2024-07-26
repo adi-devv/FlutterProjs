@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:appone/data/database.dart';
 import 'package:appone/util/new_rem.dart';
 import 'package:appone/util/rem_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class RemsPg extends StatefulWidget {
   const RemsPg({super.key});
@@ -12,24 +14,33 @@ class RemsPg extends StatefulWidget {
 }
 
 class _RemsPgState extends State<RemsPg> {
+  final _myBox = Hive.box('mybox');
+  remDatabase db = remDatabase();
   final _controller = TextEditingController();
-  List remList = [
-    ["Make App", false],
-    ["Read Book ", false],
-    ["Wake Up Early", true]
-  ];
+
+  @override
+  void initState(){
+    if (_myBox.get("remList") == null) {
+      db.createInitialData();
+    } else {
+      db.loadData();
+    }
+    super.initState();
+  }
 
   void toggleCheck(bool? value, int index) {
     setState(() {
-      remList[index][1] = !remList[index][1];
+      db.remList[index][1] = !db.remList[index][1];
     });
+    db.updateDatabase();
   }
 
   void addRem() {
     setState(() {
-      remList.add([_controller.text, false]);
+      db.remList.add([_controller.text, false]);
     });
     Navigator.of(context).pop();
+    db.updateDatabase();
   }
 
   void createRem() {
@@ -46,11 +57,13 @@ class _RemsPgState extends State<RemsPg> {
     );
   }
 
-  void deleteRem(int index){
+  void deleteRem(int index) {
     setState(() {
-      remList.removeAt(index);
+      db.remList.removeAt(index);
     });
+    db.updateDatabase();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,11 +76,11 @@ class _RemsPgState extends State<RemsPg> {
       body: Padding(
           padding: const EdgeInsets.all(10),
           child: ListView.builder(
-            itemCount: remList.length,
+            itemCount: db.remList.length,
             itemBuilder: (context, index) {
               return remTile(
-                taskName: remList[index][0],
-                taskCompleted: remList[index][1],
+                taskName: db.remList[index][0],
+                taskCompleted: db.remList[index][1],
                 onChanged: (value) => toggleCheck(value, index),
                 delFunc: (context) => deleteRem(index),
               );
