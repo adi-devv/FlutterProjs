@@ -22,7 +22,7 @@ class IntroPage extends StatelessWidget {
                   height: 108,
                 ),
               ),
-              Text(
+              const Text(
                 "Vizza",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
