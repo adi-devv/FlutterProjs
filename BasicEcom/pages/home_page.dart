@@ -34,78 +34,83 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Builder(builder: (context) {
-          return IconButton(
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
+        leading: Builder(builder: (context)=>IconButton(
+            icon: Padding(
+              padding: EdgeInsets.only(left: 12),
+              child: Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
             ),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
-          );
-        }),
+          ),
+        ),
       ),
       drawer: Drawer(
         backgroundColor: Colors.grey[900],
         child: Padding(
           padding: const EdgeInsets.only(top: 10),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              DrawerHeader(
-                  padding: EdgeInsets.all(20),
-                  child: Image.asset(
-                    'lib/images/o4.webp',
-                  )),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Divider(
-                  color: Colors.grey[800],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.home,
-                    color: Colors.grey[600],
+              Column(
+                children:[DrawerHeader(
+                    padding: const EdgeInsets.all(20),
+                    child: Image.asset(
+                      'lib/images/o4.webp',
+                    )),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Divider(
+                    color: Colors.grey[800],
                   ),
-                  title: Text(
-                    'Home',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.bold,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.home,
+                      color: Colors.grey[400],
+                    ),
+                    title: Text(
+                      'Home',
+                      style: TextStyle(
+                        color: Colors.grey[400],
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.info,
-                    color: Colors.grey[600],
-                  ),
-                  title: Text(
-                    'About',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(left: 25),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.info,
+                      color: Colors.grey[400],
+                    ),
+                    title: Text(
+                      'About',
+                      style: TextStyle(
+                        color: Colors.grey[400],
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ]),
               Padding(
-                padding: const EdgeInsets.only(left: 25),
+                padding: const EdgeInsets.only(left: 25, bottom: 25),
                 child: ListTile(
                   leading: Icon(
                     Icons.logout,
-                    color: Colors.grey[600],
+                    color: Colors.grey[400],
                   ),
                   title: Text(
                     'Logout',
                     style: TextStyle(
-                      color: Colors.grey[600],
+                      color: Colors.grey[400],
                       fontWeight: FontWeight.bold,
                     ),
                   ),
