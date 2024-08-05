@@ -42,18 +42,22 @@ class _ShopPageState extends State<ShopPage> {
             style: TextStyle(color: Colors.grey[600]),
           ),
         ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Hot Pics ‍🔥👙",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-            ),
-            Text(
-              'Tip Her To See All',
-              style: TextStyle(color: Colors.pink),
-            )
-          ],
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                "Hot Pics ‍🔥👙",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+              ),
+              Text(
+                '\$\$\$ Tip Her To See All',
+                style: TextStyle(color: Colors.pink),
+              )
+            ],
+          ),
         ),
         const SizedBox(height: 10),
         Expanded(
@@ -62,17 +66,23 @@ class _ShopPageState extends State<ShopPage> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               Item item = Item(
-                name: 'thor',
+                name: 'Armadeus',
                 price: '699',
-                desc: 'odin daughter',
-                imagePath: 'lib/images/o5.webp',
+                desc: "Odin's Daughter",
+                imagePath: 'lib/images/logo.png',
               );
               return ItemTile(
                 item: item,
               );
             },
           ),
-        )
+        ),
+        const Padding(
+          padding: EdgeInsets.only(top: 25,left: 25,right: 25),
+          child: Divider(
+            color: Colors.white,
+          ),
+        ),
       ],
     );
   }

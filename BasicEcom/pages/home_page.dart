@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Builder(builder: (context)=>IconButton(
-            icon: Padding(
+            icon: const Padding(
               padding: EdgeInsets.only(left: 12),
               child: Icon(
                 Icons.menu,
