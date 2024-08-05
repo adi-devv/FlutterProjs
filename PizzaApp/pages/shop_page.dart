@@ -12,6 +12,17 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  void cartAdd(Item item) {
+    Provider.of<Cart>(context, listen: false).cartAdd(item);
+    showDialog(
+      context: context,
+      builder: (context) => const AlertDialog(
+        title: Text('Successfully added!'),
+        content: Text('Check your cart!'),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<Cart>(
@@ -42,14 +53,14 @@ class _ShopPageState extends State<ShopPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.only(top: 16, bottom: 10),
             child: Text(
               'Hungry?  Me too!',
               style: TextStyle(color: Colors.grey[600]),
             ),
           ),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
+            padding: EdgeInsets.only(left: 25, right: 25, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -68,16 +79,16 @@ class _ShopPageState extends State<ShopPage> {
               ],
             ),
           ),
-          const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.only(right: 25),
+              padding: const EdgeInsets.only(right: 25),
               itemCount: value.getPizzaList().length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 Item item = value.getPizzaList()[index];
                 return ItemTile(
                   item: item,
+                  onTap: () => cartAdd(item),
                 );
               },
             ),
