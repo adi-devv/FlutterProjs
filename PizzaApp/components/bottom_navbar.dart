@@ -52,6 +52,7 @@ class _MyBottomNavbarState extends State<MyBottomNavbar> {
               ? Colors.deepOrangeAccent
               : Colors.grey.shade100,
           tabBorderRadius: 16,
+          gap: 4 ,
           mainAxisAlignment: MainAxisAlignment.center,
           onTabChange: (index) => _onTabChange(index),
           tabs: const [

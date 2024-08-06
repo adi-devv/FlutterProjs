@@ -72,7 +72,7 @@ class _ShopPageState extends State<ShopPage> {
                 Text(
                   'Customize',
                   style: TextStyle(
-                    color: Colors.red,
+                    color: Colors.deepOrangeAccent,
                     fontWeight: FontWeight.bold,
                   ),
                 )
