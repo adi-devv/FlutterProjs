@@ -1,4 +1,4 @@
-import 'package:ecom_basic/pages/home_page.dart';
+import 'package:vizza/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

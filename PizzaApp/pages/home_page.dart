@@ -1,6 +1,6 @@
-import 'package:ecom_basic/components/bottom_navbar.dart';
-import 'package:ecom_basic/pages/cart_page.dart';
-import 'package:ecom_basic/pages/shop_page.dart';
+import 'package:vizza/components/bottom_navbar.dart';
+import 'package:vizza/pages/cart_page.dart';
+import 'package:vizza/pages/shop_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

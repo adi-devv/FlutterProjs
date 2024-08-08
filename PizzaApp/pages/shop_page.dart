@@ -1,4 +1,4 @@
-import 'package:ecom_basic/components/item_tile.dart';
+import 'package:vizza/components/item_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/cart.dart';

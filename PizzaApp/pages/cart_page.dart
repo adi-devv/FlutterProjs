@@ -1,5 +1,5 @@
-import 'package:ecom_basic/components/cart_item.dart';
-import 'package:ecom_basic/models/cart.dart';
+import 'package:vizza/components/cart_item.dart';
+import 'package:vizza/models/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
