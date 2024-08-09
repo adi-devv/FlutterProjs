@@ -81,6 +81,7 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    onTap: () => Navigator.pushNamed(context, '/home_page'),
                   ),
                 ),
                 Padding(
@@ -114,6 +115,7 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  onTap: () => Navigator.pushNamed(context, '/intro_page'),
                 ),
               ),
             ],
