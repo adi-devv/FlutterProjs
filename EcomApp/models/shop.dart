@@ -1,37 +1,51 @@
 import 'package:ecom/models/product.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 
-class Shop {
+class Shop extends ChangeNotifier {
   final List<List<dynamic>> _productDetails = [
-    ['Product 1', 1.99, 'First product'],
-    ['Product 2', 2.99, 'Second product'],
-    ['Product 3', 3.99, 'Third product'],
-    ['Product 4', 4.99, 'Fourth product'],
+    ['Aston Martin', 1.99, 'Faster product'],
+    ['Lamborghini', 2.99, 'Second product'],
+    ['Koenigsegg', 3.99, 'Third product'],
+    ['Ferrari', 4.99, 'Fourth product'],
   ];
 
   late final List<Product> _shop;
 
   Shop() {
     _shop = [
-      for (var details in _productDetails)
+      for (int i = 0; i < _productDetails.length; i++)
         Product(
-          name: details[0],
-          price: details[1],
-          description: details[2],
+          name: _productDetails[i][0],
+          price: _productDetails[i][1],
+          description: _productDetails[i][2],
+          imagePath: _getImagePath('assets/image${i + 1}.jpg'),
         )
     ];
   }
 
-  List<Product> _cart = [];
+  String _getImagePath(String path) {
+    try {
+      rootBundle.load(path);
+      return path;
+    } catch (e) {
+      return 'assets/default.png';
+    }
+  }
+
+  final List<Product> _cart = [];
 
   List<Product> get shop => _shop;
 
   List<Product> get cart => _cart;
 
-  void addToCart(Product item) {
+  void cartAdd(Product item) {
     _cart.add(item);
+    notifyListeners();
   }
 
-  void removeFromCart(Product item) {
+  void cartRemove(Product item) {
     _cart.remove(item);
+    notifyListeners();
   }
 }
