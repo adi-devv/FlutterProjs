@@ -15,20 +15,19 @@ class MyDrawer extends StatelessWidget {
             children: [
               const SizedBox(height: 30),
               DrawerHeader(
-
                 child: Column(
                   children: [
                     Icon(
                       Icons.car_crash_outlined,
                       size: 72,
-                      color: Theme.of(context).colorScheme.inversePrimary,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                     Text(
                       'CarMine',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.inversePrimary,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ],
@@ -36,18 +35,18 @@ class MyDrawer extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               MyListTile(
-                text: "Shop",
+                text: "Garage",
                 icon: Icons.home,
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               MyListTile(
-                text: "Cart",
+                text: "Wish List",
                 icon: Icons.shopping_cart,
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/cart_page');
+                  Navigator.pushNamed(context, '/wishlist_page');
                 },
               ),
             ],

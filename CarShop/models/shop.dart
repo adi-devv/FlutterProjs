@@ -12,14 +12,14 @@ class Shop extends ChangeNotifier {
   ];
 
   late final List<Product> _shop;
-  double _total = 0.0;
+  int _total = 0;
 
   Shop() {
     _shop = [
       for (int i = 0; i < _productDetails.length; i++)
         Product(
           name: _productDetails[i][0],
-          price: _productDetails[i][1]*1000.toInt(),
+          price: _productDetails[i][1]*1000,
           description: _productDetails[i][2],
           imagePath: 'assets/${_productDetails[i][0].replaceAll(' ', '_')}.jpg',
         )
@@ -30,9 +30,9 @@ class Shop extends ChangeNotifier {
 
   List<Product> get shop => _shop;
 
-  List<Product> get cart => _cart;
+  List<Product> get wList => _cart;
 
-  double get total => _total;
+  int get total => _total;
 
   void _updateTotal() {
     _total = _cart.fold(0, (sum, item) => sum + item.price);

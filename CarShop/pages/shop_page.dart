@@ -17,12 +17,12 @@ class ShopPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Shop Page"),
+        title: const Text("Garage"),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: IconButton(
-              onPressed: () => Navigator.pushNamed(context, '/cart_page'),
+              onPressed: () => Navigator.pushNamed(context, '/wishlist_page'),
               icon: const Icon(Icons.shopping_bag),
             ),
           )

@@ -15,28 +15,6 @@ class MyProductTile extends StatelessWidget {
     this.onTap, // Optional parameter
   });
 
-  void cartAdd(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: const Text("Add this item to your cart?"),
-        actions: [
-          MaterialButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text("Cancel"),
-          ),
-          MaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-              context.read<Shop>().cartAdd(product);
-            },
-            child: const Text("Yes"),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -106,7 +84,11 @@ class MyProductTile extends StatelessWidget {
                     ),
                   ),
                   child: IconButton(
-                    onPressed: onTap ?? () => cartAdd(context),
+                    onPressed: () => Utils.showDialogBox(
+                      context: context,
+                      message: "Add this car to your wish list?",
+                      onConfirm: () => context.read<Shop>().cartAdd(product),
+                    ),
                     icon: const Icon(Icons.add),
                     color: Colors.white,
                   ),
