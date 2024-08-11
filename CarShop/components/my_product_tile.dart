@@ -7,12 +7,10 @@ import '../models/shop.dart';
 
 class MyProductTile extends StatelessWidget {
   final Product product;
-  final void Function()? onTap; // Nullable onTap
 
   const MyProductTile({
     super.key,
     required this.product,
-    this.onTap, // Optional parameter
   });
 
   @override
