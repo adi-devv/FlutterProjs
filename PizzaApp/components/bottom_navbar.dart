@@ -22,17 +22,16 @@ class _MyBottomNavbarState extends State<MyBottomNavbar> {
 
   void _onHorizontalDragUpdate(DragUpdateDetails details) {
     if (details.delta.dx > 0) {
-      // Swiping in right direction
-      if (_selectedIndex > 0) {
-        _onTabChange(_selectedIndex - 1);
-      }
-    } else if (details.delta.dx < 0) {
-      // Swiping in left direction
       if (_selectedIndex < 1) {
         _onTabChange(_selectedIndex + 1);
       }
+    } else if (details.delta.dx < 0) {
+      if (_selectedIndex > 0) {
+        _onTabChange(_selectedIndex - 1);
+      }
     }
   }
+
 
   @override
   Widget build(BuildContext context) {

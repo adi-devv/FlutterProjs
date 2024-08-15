@@ -40,7 +40,7 @@ class _MyCartState extends State<CartItem> {
         title: Text(widget.item.name),
         subtitle: Text(widget.item.price),
         trailing: IconButton(
-          icon: Icon(Icons.delete),
+          icon: const Icon(Icons.delete),
           onPressed: cartRemove,
         ),
       ),
