@@ -4,6 +4,7 @@ import 'package:heatmap_habit/components/my_drawer.dart';
 import 'package:heatmap_habit/database/habit_database.dart';
 import 'package:heatmap_habit/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:heatmap_habit/utils/samples.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,26 +14,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    Provider.of<HabitDatabase>(context, listen: false).readHabits();
+    super.initState();
+  }
+
   final TextEditingController textController = TextEditingController();
 
   void createHabit() {
-    showDialog(
+    Utils.showDialogBox(
       context: context,
-      builder: (context) => AlertDialog(
-        content: TextField(
-          controller: textController,
-          decoration: const InputDecoration(hintText: "Create a new habit"),
-        ),
-        actions: [
-          MaterialButton(onPressed: () {
-            String habitName = textController.text;
-            context.read<HabitDatabase>().addHabit(habitName);
-            
-            Navigator.pop(context);
-            textController.clear();
-          },)
-        ],
+      content: TextField(
+        controller: textController,
+        decoration: const InputDecoration(hintText: "Create a new habit"),
       ),
+      onConfirm: () {
+        String habitName = textController.text;
+        context.read<HabitDatabase>().addHabit(habitName);
+
+        Navigator.pop(context);
+        textController.clear();
+      },
     );
   }
 
@@ -51,6 +54,21 @@ class _HomePageState extends State<HomePage> {
           color: Colors.blue,
         ),
       ),
+      body: _habitList,
+    );
+  }
+
+  Widget _habitList() {
+    final habitDatabase = context.watch<HabitDatabase>();
+
+    List<Habit> currentHabits = habitDatabase.currentHabits;
+    return ListView.builder(
+      itemCount: currentHabits.length,
+      itemBuilder: (context, index) {
+        final habit = currentHabits[index];
+        bool isCompletedToday = isHabitCompletedToday();
+
+      },
     );
   }
 }
