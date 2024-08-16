@@ -30,6 +30,8 @@ class HabitDatabase extends ChangeNotifier {
     return settings?.firstLaunchDate;
   }
 
+  // ---- HABIT FUNCTIONS ----
+
   final List<Habit> currentHabits = [];
 
   Future<void> addHabit(String habitName) async {
