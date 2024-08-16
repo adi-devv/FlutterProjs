@@ -6,6 +6,9 @@ import 'package:heatmap_habit/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:heatmap_habit/utils/samples.dart';
 
+import '../models/habit.dart';
+import '../utils/habit_util.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -32,8 +35,6 @@ class _HomePageState extends State<HomePage> {
       onConfirm: () {
         String habitName = textController.text;
         context.read<HabitDatabase>().addHabit(habitName);
-
-        Navigator.pop(context);
         textController.clear();
       },
     );
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.blue,
         ),
       ),
-      body: _habitList,
+      body: _habitList(),
     );
   }
 
@@ -65,9 +66,11 @@ class _HomePageState extends State<HomePage> {
     return ListView.builder(
       itemCount: currentHabits.length,
       itemBuilder: (context, index) {
-        final habit = currentHabits[index];
-        bool isCompletedToday = isHabitCompletedToday();
 
+        final habit = currentHabits[index];
+        bool isCompletedToday = habitStatus(habit.completedDays);
+
+        return ListTile(title: Text(habit.name));
       },
     );
   }
