@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:heatmap_habit/components/my_drawer.dart';
 import 'package:heatmap_habit/components/my_habit_tile.dart';
+import 'package:heatmap_habit/components/my_heat_map.dart';
 import 'package:heatmap_habit/database/habit_database.dart';
 import 'package:provider/provider.dart';
 import 'package:heatmap_habit/utils/samples.dart';
@@ -86,16 +88,39 @@ class _HomePageState extends State<HomePage> {
         onPressed: createHabit,
         elevation: 0,
         backgroundColor: Theme.of(context).colorScheme.tertiary,
-        child: const Icon(
+        child: Icon(
           Icons.add,
-          color: Colors.blue,
+          color: Theme.of(context).colorScheme.inversePrimary,
         ),
       ),
-      body: _habitList(),
+      body: ListView(
+        children: [
+          _buildHeatMap(),
+          _buildHabitList(),
+        ],
+      ),
     );
   }
 
-  Widget _habitList() {
+  Widget _buildHeatMap() {
+    final habitDatabase = context.watch<HabitDatabase>();
+    List<Habit> currentHabits = habitDatabase.currentHabits;
+    return FutureBuilder<DateTime?>(
+      future: habitDatabase.getFirstLaunchDate(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return MyHeatMap(
+            startDate: snapshot.data!,
+            datasets: prepHeatMapDataset(currentHabits),
+          );
+        } else {
+          return Container();
+        }
+      },
+    );
+  }
+
+  Widget _buildHabitList() {
     final habitDatabase = context.watch<HabitDatabase>();
 
     List<Habit> currentHabits = habitDatabase.currentHabits;
@@ -103,6 +128,8 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: ListView.builder(
         itemCount: currentHabits.length,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           final habit = currentHabits[index];
           bool isCompletedToday = habitStatus(habit.completedDays);

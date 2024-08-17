@@ -48,7 +48,7 @@ class MyHabitTile extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 color: isCompleted
-                    ? Colors.green.shade300
+                    ? Colors.green.shade400
                     : Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(8)),
             padding: const EdgeInsets.all(12),
@@ -63,6 +63,7 @@ class MyHabitTile extends StatelessWidget {
               ),
               leading: Checkbox(
                 activeColor: Colors.green,
+                checkColor: Colors.white,
                 value: isCompleted,
                 onChanged: onChanged,
               ),
