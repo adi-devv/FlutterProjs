@@ -74,12 +74,13 @@ class HabitDatabase extends ChangeNotifier {
         await isar.habits.put(habit);
       });
     }
+    readHabits();
   }
 
-  Future<void> updateHabitName(int id, String newName)async{
+  Future<void> updateHabitName(int id, String newName) async {
     final habit = await isar.habits.get(id);
-    if (habit!= null){
-      await isar.writeTxn(()async{
+    if (habit != null) {
+      await isar.writeTxn(() async {
         habit.name = newName;
         await isar.habits.put(habit);
       });
@@ -87,8 +88,11 @@ class HabitDatabase extends ChangeNotifier {
     readHabits();
   }
 
-  Future<void> deleteHabit(int id)async{
-    await isar.habits.delete(id);
-  readHabits();
+  Future<void> deleteHabit(int id) async {
+    await isar.writeTxn(() async {
+      await isar.habits.delete(id);
+    });
+
+    await readHabits();
   }
 }
