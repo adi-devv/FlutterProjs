@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:heatmap_habit/components/my_drawer.dart';
+import 'package:heatmap_habit/components/my_habit_tile.dart';
 import 'package:heatmap_habit/database/habit_database.dart';
 import 'package:heatmap_habit/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void checkHabit(bool? value, Habit habit) {
+    if (value != null) {
+      context.read<HabitDatabase>().updateHabitCompletion(habit.id, value);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,11 +73,14 @@ class _HomePageState extends State<HomePage> {
     return ListView.builder(
       itemCount: currentHabits.length,
       itemBuilder: (context, index) {
-
         final habit = currentHabits[index];
         bool isCompletedToday = habitStatus(habit.completedDays);
 
-        return ListTile(title: Text(habit.name));
+        return MyHabitTile(
+          text: habit.name,
+          isCompleted: isCompletedToday,
+          onChanged: (value) => checkHabit(value, habit),
+        );
       },
     );
   }
