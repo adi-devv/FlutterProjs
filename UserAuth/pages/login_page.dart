@@ -103,6 +103,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SquareTile(imagePath: 'assets/google.png'),
+                    const SizedBox(width: 20,),
                     SquareTile(imagePath: 'assets/linkedin.png')
                   ],
                 ),
