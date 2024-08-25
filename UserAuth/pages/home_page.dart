@@ -13,6 +13,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
         actions: [
@@ -24,7 +25,10 @@ class HomePage extends StatelessWidget {
         actionsIconTheme: IconThemeData(color: Colors.white60),
       ),
       body: Center(
-        child: Text('${user.email!}, logged in baby!',style: TextStyle(fontSize: 20),),
+        child: Text(
+          '${user.email!}, logged in baby!',
+          style: TextStyle(fontSize: 20),
+        ),
       ),
     );
   }
