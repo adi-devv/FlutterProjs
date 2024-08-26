@@ -19,15 +19,18 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: signUserOut,
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
           ),
         ],
-        actionsIconTheme: IconThemeData(color: Colors.white60),
+        actionsIconTheme: const IconThemeData(color: Colors.white60),
       ),
-      body: Center(
-        child: Text(
-          '${user.email!}, logged in baby!',
-          style: TextStyle(fontSize: 20),
+      body: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Center(
+          child: Text(
+            '${user.email!}, logged in baby!',
+            style: const TextStyle(fontSize: 20),
+          ),
         ),
       ),
     );
