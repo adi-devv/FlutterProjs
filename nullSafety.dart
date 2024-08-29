@@ -1,6 +1,6 @@
 int x = 8;
 
-// ? after a datatype means the variable may be null
+// ? after a datatype means the variable may be nu ll
 
 int? y;
 
