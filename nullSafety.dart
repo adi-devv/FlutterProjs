@@ -11,7 +11,7 @@ String nameInApp = nameFromDatabase ?? 'No name';
 
 /*
 
-! after a variable means, it's certain that it won't be null
+! after a variable means, it's certain that it won't be nuull
 ?. null aware operator -> used to access a property of an obj
 
 - if not null -> returns normally
