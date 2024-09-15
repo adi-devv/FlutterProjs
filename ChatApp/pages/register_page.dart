@@ -6,8 +6,14 @@ import '../components/my_textfield.dart';
 class RegisterPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
+  final TextEditingController _cnfpassController = TextEditingController();
 
-  RegisterPage({super.key});
+  final void Function()? onTap;
+
+  RegisterPage({
+    super.key,
+    required this.onTap,
+  });
 
   void register() {}
 
@@ -26,7 +32,7 @@ class RegisterPage extends StatelessWidget {
             ),
             const SizedBox(height: 50),
             Text(
-              'Welcome back!',
+              "Let's create a new account for you!",
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimary,
                 fontSize: 16,
@@ -44,6 +50,12 @@ class RegisterPage extends StatelessWidget {
               obscureText: true,
               controller: _passController,
             ),
+            const SizedBox(height: 20),
+            MyTextfield(
+              hintText: 'Confirm Password',
+              obscureText: true,
+              controller: _cnfpassController,
+            ),
             const SizedBox(height: 25),
             MyButton(
               text: 'Sign Up',
@@ -51,18 +63,22 @@ class RegisterPage extends StatelessWidget {
             ),
             const SizedBox(height: 25),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Not a member?',
+                  'Already have an account? ',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                Text(
-                  'Register now',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
+                GestureDetector(
+                  onTap: onTap,
+                  child: Text(
+                    'Login now',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
               ],

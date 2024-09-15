@@ -1,14 +1,31 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
+import 'package:chat_app/pages/register_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
 
-  LoginPage({super.key});
+  final void Function()? onTap;
 
-  void login() {}
+  LoginPage({super.key, required this.onTap});
+
+  void login(context) async {
+    final authService = AuthService();
+    try {
+      await authService.signInWithEmailPassword(
+          _emailController.text, _passController.text);
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(e.toString()),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,22 +63,26 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 25),
             MyButton(
               text: 'Login',
-              onTap: login,
+              onTap: () => login(context),
             ),
             const SizedBox(height: 25),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Not a member?',
+                  'Not a member? ',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                Text(
-                  'Register now',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
+                GestureDetector(
+                  onTap: onTap,
+                  child: Text(
+                    'Sign Up',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
               ],
