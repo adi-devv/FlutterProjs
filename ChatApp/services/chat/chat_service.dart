@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ChatService extends StatelessWidget {
-  const ChatService({super.key});
+class ChatService {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+  Stream<List<Map<String, dynamic>>> getUsersStream() {
+    return _firestore
+        .collection('Users')
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
   }
 }
