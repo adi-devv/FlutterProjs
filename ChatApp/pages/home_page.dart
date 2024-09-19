@@ -31,6 +31,7 @@ class HomePage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Text('Loading...');
           }
+          // TODO
           return ListView(
             children: snapshot.data!
                 .map<Widget>(
@@ -42,17 +43,21 @@ class HomePage extends StatelessWidget {
 
   Widget _buildUserListItem(
       BuildContext context, Map<String, dynamic> userData) {
-    return UserTile(
-      text: userData['email'],
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChatPage(
-                receiverEmail: userData['email'],
-              ),
-            ));
-      },
-    );
+    if (userData['email'] != _authService.getCurrentUser()) {
+      return UserTile(
+        text: userData['email'],
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChatPage(
+                  receiverEmail: userData['email'],
+                ),
+              ));
+        },
+      );
+    }else{
+      return Container();
+    }
   }
 }
