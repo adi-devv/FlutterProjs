@@ -1,3 +1,4 @@
+import 'package:chat_app/components/chat_bubble.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/services/chat/chat_service.dart';
@@ -37,7 +38,7 @@ class ChatPage extends StatelessWidget {
           Expanded(
             child: _buildMessageList(),
           ),
-          _buildUserInput(),
+          _buildUserInput(context),
         ],
       ),
     );
@@ -72,38 +73,66 @@ class ChatPage extends StatelessWidget {
     var alignment =
         isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
 
-    return Container(
-      alignment: alignment,
-      child: Column(
-        crossAxisAlignment:
-            isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: [
-          Text(data['message']),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+      child: Container(
+        alignment: alignment,
+        child: Column(
+          crossAxisAlignment:
+              isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          children: [
+            ChatBubble(message: data['message'], isCurrentUser: isCurrentUser),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildUserInput() {
+  Widget _buildUserInput(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 4),
+      padding: const EdgeInsets.all(20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: MyTextfield(
+            child: TextField(
+              controller: _messageController,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.tertiary),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                fillColor: Theme.of(context).colorScheme.secondary,
+                filled: true,
                 hintText: 'Type a message',
-                obscureText: false,
-                controller: _messageController),
+                hintStyle:
+                    TextStyle(color: Theme.of(context).colorScheme.primary),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 10,
           ),
           Container(
             decoration: BoxDecoration(
-                color: Colors.lightBlueAccent,
+                color: Theme.of(context).colorScheme.secondary,
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(16)),
-            child: IconButton(
-              onPressed: sendMessage,
-              icon: const Icon(Icons.send,color: Colors.white,),
+                borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+              padding: const EdgeInsets.all(3),
+              child: IconButton(
+                onPressed: sendMessage,
+                icon: const Icon(
+                  Icons.send,
+                  color: Colors.lightBlueAccent,
+                  size: 30,
+                ),
+              ),
             ),
           ),
         ],
