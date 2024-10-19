@@ -1,1 +1,1 @@
-Build.gradle minSdkVersion 23
+Build.gradle minSdkVersion - 23
