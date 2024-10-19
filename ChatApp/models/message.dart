@@ -22,6 +22,6 @@ class Message {
       'receiverID':receiverID,
       'message':message,
       'timestamp':timestamp,
-    }
+    };
   }
 }
