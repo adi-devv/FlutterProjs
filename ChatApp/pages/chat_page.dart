@@ -32,6 +32,7 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(receiverEmail),
+        foregroundColor: Colors.grey.shade600,
       ),
       body: Column(
         children: [
