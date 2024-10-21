@@ -39,7 +39,7 @@ class SettingsPage extends StatelessWidget {
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: List.generate(settings.length, (index) {
             return Column(
@@ -49,11 +49,15 @@ class SettingsPage extends StatelessWidget {
                   children: [
                     Text(
                       settings[index]['title'] as String,
-                      style: const TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey.shade600,
+                      ),
                     ),
                     CupertinoSwitch(
                       value: settings[index]['value'] as bool,
-                      onChanged: settings[index]['onChanged'] as void Function(bool)?,
+                      onChanged:
+                          settings[index]['onChanged'] as void Function(bool)?,
                     ),
                   ],
                 ),
