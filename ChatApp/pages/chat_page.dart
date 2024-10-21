@@ -91,7 +91,7 @@ class ChatPage extends StatelessWidget {
 
   Widget _buildUserInput(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(7),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -100,8 +100,7 @@ class ChatPage extends StatelessWidget {
               controller: _messageController,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.tertiary),
+                  borderSide: const BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -115,23 +114,20 @@ class ChatPage extends StatelessWidget {
                     TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
             ),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
+          ),const SizedBox(width: 7,),
           Container(
             decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(20)),
+              color: Colors.lightBlueAccent,
+              borderRadius: BorderRadius.circular(30)
+            ),
             child: Padding(
               padding: const EdgeInsets.all(3),
               child: IconButton(
                 onPressed: sendMessage,
-                icon: const Icon(
+                icon: Icon(
                   Icons.send,
-                  color: Colors.lightBlueAccent,
-                  size: 30,
+                  color: Theme.of(context).colorScheme.secondary,
+                  size: 25,
                 ),
               ),
             ),
