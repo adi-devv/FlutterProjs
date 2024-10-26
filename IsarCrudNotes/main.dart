@@ -13,6 +13,7 @@ void main() async {
       ChangeNotifierProvider(
         create: (context) => NoteDatabase(),
       ),
+      
       ChangeNotifierProvider(
         create: (context) => ThemeProvider(),
       ),
