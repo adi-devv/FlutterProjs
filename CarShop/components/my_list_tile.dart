@@ -21,9 +21,14 @@ class MyListTile extends StatelessWidget {
           icon,
           color: Colors.grey,
         ),
-        title: Text(text,style: TextStyle(color: Colors.grey.shade600,fontWeight: FontWeight.bold),),
+        title: Text(
+          text,
+          style: TextStyle(
+            color: Colors.grey.shade600,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         onTap: onTap,
-
       ),
     );
   }
